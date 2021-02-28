@@ -38,27 +38,38 @@ module.exports = function toReadable(number) {
     };
     if (number <= 20) {
         readable = readable + numStr[number];
-    } else if (99 < number < 1000) {
+    }
+    if (20 < number && number < 100) {
+        arrOfNumber[1] == 0
+            ? (readable = tentoStr[arrOfNumber[0]])
+            : (readable =
+                  tentoStr[arrOfNumber[0]] + " " + numStr[arrOfNumber[1]]);
+    }
+    if (99 < number) {
         for (let i = 0; i < arrOfNumber.length; i++) {
             if (i == 0) {
-                readable = numStr[arrOfNumber[i]] + " hundred ";
+                readable = numStr[arrOfNumber[i]] + " hundred";
             } else if (i == 1) {
                 switch (arrOfNumber[i]) {
                     case "0":
                         isZero = true;
-                        readable = readable + numStr[arrOfNumber[i + 1]];
+                        arrOfNumber[2] == 0
+                            ? readable
+                            : (readable =
+                                  readable + " " + numStr[arrOfNumber[i + 1]]);
                         break;
                     case "1":
                         isOne = true;
                         readable;
                         break;
                     default:
-                        readable = readable + tentoStr[arrOfNumber[i]];
+                        readable = readable + " " + tentoStr[arrOfNumber[i]];
                         break;
                 }
             } else if (i == 2) {
                 if (isOne == true) {
-                    readable = readable + numStr[Number(arrOfNumber[i]) + 10];
+                    readable =
+                        readable + " " + numStr[Number(arrOfNumber[i]) + 10];
                 } else if (isZero == true) {
                     readable;
                 } else {
